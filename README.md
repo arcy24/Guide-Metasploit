@@ -269,3 +269,78 @@ msf  auxiliary(tcp) > run
 [*] 172.16.194.172:80 - TCP OPEN
 ```
 
+- Services
+```
+msf6 auxiliary(scanner/portscan/tcp) > services 
+Services
+========
+
+host           port  proto  name           state  info
+----           ----  -----  ----           -----  ----
+172.16.70.1    22    tcp                   open
+172.16.70.210  53    tcp    domain         open   Simple DNS Plus
+172.16.70.210  88    tcp    kerberos-sec   open   Microsoft Windows Kerberos server time: 2022-12-03 19:32:13Z
+172.16.70.210  135   tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.210  139   tcp    netbios-ssn    open   Microsoft Windows netbios-ssn
+172.16.70.210  389   tcp    ldap           open   Microsoft Windows Active Directory LDAP Domain: netsectap-labs.local, Site: Default-First-Sit
+                                                  e-Name
+172.16.70.210  445   tcp    microsoft-ds   open   Windows Server 2016 Standard 14393 microsoft-ds workgroup: NETSECTAP-LABS
+172.16.70.210  464   tcp    kpasswd5       open
+172.16.70.210  593   tcp    ncacn_http     open   Microsoft Windows RPC over HTTP 1.0
+172.16.70.210  636   tcp    tcpwrapped     open
+172.16.70.210  3268  tcp    ldap           open   Microsoft Windows Active Directory LDAP Domain: netsectap-labs.local, Site: Default-First-Sit
+                                                  e-Name
+172.16.70.210  3269  tcp    tcpwrapped     open
+172.16.70.210  3389  tcp    ms-wbt-server  open   Microsoft Terminal Services
+```
+
+- CSV Export
+
+`msf > services -s http -c port 172.16.194.134 -o /root/msfu/http.csv'
+
+- Creds
+
+```
+msf  auxiliary(mysql_login) > run
+
+[*] 172.16.194.172:3306 MYSQL - Found remote MySQL version 5.0.51a
+[*] 172.16.194.172:3306 MYSQL - [1/2] - Trying username:'root' with password:''
+[*] 172.16.194.172:3306 - SUCCESSFUL LOGIN 'root' : ''
+[*] Scanned 1 of 1 hosts (100% complete)
+[*] Auxiliary module execution completed
+
+
+msf  auxiliary(mysql_login) > creds 
+
+Credentials
+===========
+
+host            port  user  pass  type      active?
+----            ----  ----  ----  ----      -------
+172.16.194.172  3306  root        password  true
+
+[*] Found 1 credential.
+msf  auxiliary(mysql_login) >
+
+```
+
+- Adding Creds Post Exploitation
+
+During post-exploitation of a host, gathering user credentials is an important activity in order to further penetrate a target network. As we gather sets of credentials, we can add them to our database with the creds -a command.
+
+```
+msf > creds -a 172.16.194.134 -p 445 -u Administrator -P 7bf4f254b222bb24aad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e:::
+[*] Time: 2012-06-20 20:31:42 UTC Credential: host=172.16.194.134 port=445 proto=tcp sname= type=password user=Administrator pass=7bf4f254b222bb24aad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e::: active=true
+
+msf > creds
+
+Credentials
+===========
+
+host            port  user           pass                                                                  type      active?
+----            ----  ----           ----                                                                  ----      -------
+172.16.194.134  445   Administrator  7bf4f254b222bb24aad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e:::  password  true
+
+[*] Found 1 credential.
+```
+
