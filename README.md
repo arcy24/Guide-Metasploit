@@ -35,3 +35,94 @@ Metasploit modules are located @
 - /usr/share/metasploit-framework/modules/nops/
 
 
+### **MSFConsole Commands**
+
+- Linux basic command works within MSFConsole such as but not limited to ls to list files, ping to check active host in the the network, history , etc. 
+
+- More MSFconsolsole commands
+https://www.offensive-security.com/metasploit-unleashed/msfconsole-commands/
+
+
+### **Workspace**
+
+- Workspace in Metasploit give us the capability to keep track of our activities and scans in order. Once connected to the database, we can start organizing our different movements by using what are called ‘workspaces’. This gives us the ability to save different scans from different locations/networks/subnets. 
+
+- To enable workspace:
+
+```
+root@kali:~# systemctl start postgresql
+root@kali:~# msfdb init
+Creating database user 'msf'
+Enter password for new role: 
+Enter it again: 
+Creating databases 'msf' and 'msf_test'
+Creating configuration file in /usr/share/metasploit-framework/config/database.yml
+Creating initial database schema
+
+```
+
+- Run MSFConsole
+
+```
+─$ sudo msfconsole 
+[sudo] password for arcy24: 
+                                                  
+                          ########                  #
+                      #################            #
+                   ######################         #
+                  #########################      #
+                ############################
+               ##############################
+               ###############################
+              ###############################
+              ##############################
+                              #    ########   #
+                 ##        ###        ####   ##
+                                      ###   ###
+                                    ####   ###
+               ####          ##########   ####
+               #######################   ####
+                 ####################   ####
+                  ##################  ####
+                    ############      ##
+                       ########        ###
+                      #########        #####
+                    ############      ######
+                   ########      #########
+                     #####       ########
+                       ###       #########
+                      ######    ############
+                     #######################
+                     #   #   ###  #   #   ##
+                     ########################
+                      ##     ##   ##     ##
+                            https://metasploit.com
+
+
+       =[ metasploit v6.2.26-dev                          ]
++ -- --=[ 2264 exploits - 1186 auxiliary - 404 post       ]
++ -- --=[ 951 payloads - 45 encoders - 11 nops            ]
++ -- --=[ 9 evasion                                       ]
+
+Metasploit tip: You can use help to view all 
+available commands
+Metasploit Documentation: https://docs.metasploit.com/
+
+msf6 >
+
+```
+
+- Check database status 
+```
+msf6 > db_status
+[*] Connected to msf. Connection type: postgresql.
+msf6 > 
+```
+
+- Check workspace
+```
+msf6 > workspace 
+  tryhackme
+* default
+msf6 > 
+```
