@@ -517,3 +517,10 @@ meterpreter >
 
 - Reference https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/
 
+### **Let's Practice**
+
+- https://tryhackme.com/room/blue
+
+- https://tryhackme.com/room/ice
+
+- https://tryhackme.com/room/poster
