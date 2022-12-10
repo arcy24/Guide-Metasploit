@@ -541,8 +541,28 @@ meterpreter >
 
 - What is the computer name?
 
-
+### **Ice**
 
 - https://tryhackme.com/room/ice
 
+
+### **Ice**
+
+### **Poster**
+
 - https://tryhackme.com/room/poster
+
+- Scan Poster host
+
+- What is the rdbms installed on the server?
+
+- What port is the rdbms running on?
+
+- What is the critical vulnerability you have identified after the scan?
+
+- Search the identified vulnerabilty in Metasploit and exploit the host (need to use multiple modules in this exercise)
+
+- What is the exploit module we could use for this vulnerabililty?
+
+- Can you elevate priv using this exploit?
+
