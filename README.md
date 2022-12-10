@@ -519,7 +519,29 @@ meterpreter >
 
 ### **Let's Practice**
 
+### **Blue**
+
 - https://tryhackme.com/room/blue
+
+- Connect to THM 
+
+- Scan Blue host
+
+- What is the critical vulnerability you have identified after the scan?
+
+- Search the identified vulnerabilty in Metasploit and exploit the host
+
+- What is the exploit module we could use for this vulnerabililty?
+
+- Do hashdump within Meterpreter
+
+- What is the hash of a user other than the Administrator?
+
+- Decoding the hash value of the user, what is the password?
+
+- What is the computer name?
+
+
 
 - https://tryhackme.com/room/ice
 
