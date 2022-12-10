@@ -715,9 +715,6 @@ SAMKey : e4050cd05f9f5141fa36ed6c2e84c44a
 
 - https://tryhackme.com/room/ice
 
-
-### **Ice**
-
 - Scan Ice host
 
 - What is the host name identified in the scan?
