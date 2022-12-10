@@ -517,6 +517,44 @@ meterpreter >
 
 - Reference https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/
 
+### **Background**
+
+- The "background" command will send the current Meterpreter session to the background and return you to the ‘msf’ prompt. To get back to your Meterpreter session, just interact with it again.
+
+```
+meterpreter > background 
+[*] Backgrounding session 9...
+
+```
+
+### **Session**
+
+- The sessions command allows you to list, interact with, and kill spawned sessions. The sessions can be shells, Meterpreter sessions, VNC, etc.
+
+```
+
+> sessions 
+
+Active sessions
+===============
+
+  Id  Name  Type                     Information                    Connection
+  --  ----  ----                     -----------                    ----------
+  8         meterpreter x86/windows  Dark-PC\Dark @ DARK-PC         10.13.6.58:4444 -> 10.10.190.82:49214 (10.10.190.82)
+  9         meterpreter x86/windows  NT AUTHORITY\SYSTEM @ DARK-PC  10.13.6.58:9999 -> 10.10.190.82:49229 (10.10.190.82)
+
+```
+
+### **L0cal Exploit Suggester**
+
+Where The Vulns At?
+Before you can use the local exploit suggester, you must already have a session opened on your target. It is important to note that the type of session you have on your target can change the vulnerabilities that are detected. If you are using Windows, I would recommend using Meterpreter. For all other operating systems, a shell will give you better results due to the way platform exploit matching works. For instance, Python Meterpreter is treated as implementing the 'python' platform, which can miss native platform exploits currently. We hope to improve this in the future.
+
+- MS module "post/multi/recon/local_exploit_suggester"
+
+Reference: https://www.rapid7.com/blog/post/2015/08/11/metasploit-local-exploit-suggester-do-less-get-more/
+
+
 ### **Let's Practice**
 
 ### **Blue**
@@ -537,7 +575,7 @@ meterpreter >
 
 - What is the hash of a user other than the Administrator?
 
-- Decoding the hash value of the user, what is the password?
+- Decoding the hash value of the user and what is the password?
 
 - What is the computer name?
 
@@ -547,6 +585,30 @@ meterpreter >
 
 
 ### **Ice**
+
+- Scan Ice host
+
+- What is the host name identified in the scan?
+
+- Identify the vulnerabilities and find exploit for Metasploit
+
+- What is your traget port?
+
+- What is the target volnerability
+
+- What exploit did you find?
+
+- What MS exploit module did you use?
+
+- Did you get Meterpreter or shell?
+
+- What privilege you have during the inital exploit? 
+
+- What process did you use to identify additional vulnerability and elevate privilege?
+
+- What is the hash of a user other than the Administrator?
+
+- Decoding the hash value of the user and what is the password?
 
 ### **Poster**
 
