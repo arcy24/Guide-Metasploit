@@ -683,8 +683,6 @@ Local SID : S-1-5-21-2096091615-1365079743-3039020981
 
 SAMKey : e4050cd05f9f5141fa36ed6c2e84c44a
 
-.......
-
 ```
 
 - Once hash has been identified, you can utilize any online hash decoder such as https://crackstation.net/, etc or off-line tools such as John the Ripper or Hash Cat
