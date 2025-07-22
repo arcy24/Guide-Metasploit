@@ -225,6 +225,30 @@ address         os_flavor
 
 msf >
 ```
+- Quickly Show All Info About a Host using (services, vulns, hosts, and notes). For example vulns <IP address>. 
+
+```
+msf6 > services 172.16.70.120
+Services
+========
+
+host           port   proto  name           state  info
+----           ----   -----  ----           -----  ----
+172.16.70.120  135    tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  139    tcp    netbios-ssn    open   Microsoft Windows netbios-ssn
+172.16.70.120  445    tcp    microsoft-ds   open   Microsoft Windows 7 - 10 microsoft-ds workgroup: WORKGROUP
+172.16.70.120  554    tcp    rtsp           open
+172.16.70.120  2869   tcp    http           open   Microsoft HTTPAPI httpd 2.0 SSDP/UPnP
+172.16.70.120  3389   tcp    ms-wbt-server  open
+172.16.70.120  5357   tcp    http           open   Microsoft HTTPAPI httpd 2.0 SSDP/UPnP
+172.16.70.120  10243  tcp    http           open   Microsoft HTTPAPI httpd 2.0 SSDP/UPnP
+172.16.70.120  49152  tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  49153  tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  49154  tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  49155  tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  49156  tcp    msrpc          open   Microsoft Windows RPC
+172.16.70.120  49158  tcp    msrpc          open   Microsoft Windows RPC
+```
 
 - Using hosts to fill RHOST information 
 
